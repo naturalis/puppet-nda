@@ -41,7 +41,9 @@ class nda (
 ){
 
   package {'openjdk-6-jre' :} ->
-  class { 'jboss': }
+  class { 'jboss':
+    bindaddr => "0.0.0.0",
+  }
 
   jboss::instance { $application_name :
     user          => $application_name,   # Default is jboss

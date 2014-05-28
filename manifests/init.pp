@@ -40,6 +40,7 @@ class nda (
   $application_name  = 'nda',
 ){
 
+  package {'openjdk-6-jre' :} ->
   class { 'jboss': }
 
   jboss::instance { $application_name :
@@ -50,10 +51,10 @@ class nda (
     bindaddr      => "0.0.0.0", # Default is 127.0.0.1
     port          => "80",      # Default is 8080
     init_timeout  => 10,        # Default is 0
-    run_conf      => "site/jboss/myapp/run.conf",  # Default is unset
-    conf_dir      => "site/jboss/myapp/conf",      # Default is unset
-    deploy_dir    => "site/jboss/myapp/deploy",    # Default is unset
-    deployers_dir => "site/jboss/myapp/deployers", # Default is unset
+    #run_conf      => "site/jboss/myapp/run.conf",  # Default is unset
+    #conf_dir      => "site/jboss/myapp/conf",      # Default is unset
+    #deploy_dir    => "site/jboss/myapp/deploy",    # Default is unset
+    #deployers_dir => "site/jboss/myapp/deployers", # Default is unset
    }
 
 

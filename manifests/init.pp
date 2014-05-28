@@ -42,18 +42,18 @@ class nda (
 
   class { 'jboss': }
 
-  jboss::instance { $name:
-       user          => $name,   # Default is jboss
-       group         => $name,   # Default is jboss
-       createuser    => true       # Default is true
-       template      => "all",     # Default is default
-       bindaddr      => "0.0.0.0", # Default is 127.0.0.1
-       port          => "80",      # Default is 8080
-       init_timeout  => 10,        # Default is 0
-       run_conf      => "site/jboss/myapp/run.conf",  # Default is unset
-       conf_dir      => "site/jboss/myapp/conf",      # Default is unset
-       deploy_dir    => "site/jboss/myapp/deploy",    # Default is unset
-       deployers_dir => "site/jboss/myapp/deployers", # Default is unset
+  jboss::instance { $name :
+    user          => $name,   # Default is jboss
+    group         => $name,   # Default is jboss
+    createuser    => true       # Default is true
+    template      => "all",     # Default is default
+    bindaddr      => "0.0.0.0", # Default is 127.0.0.1
+    port          => "80",      # Default is 8080
+    init_timeout  => 10,        # Default is 0
+    run_conf      => "site/jboss/myapp/run.conf",  # Default is unset
+    conf_dir      => "site/jboss/myapp/conf",      # Default is unset
+    deploy_dir    => "site/jboss/myapp/deploy",    # Default is unset
+    deployers_dir => "site/jboss/myapp/deployers", # Default is unset
    }
 
 

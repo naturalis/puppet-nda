@@ -42,7 +42,7 @@ class nda (
 
   package {'openjdk-6-jre' :} ->
   class { 'jboss':
-    bindaddr => "0.0.0.0",
+    bindaddr => $::ipaddress,
   }
 
   jboss::instance { $application_name :

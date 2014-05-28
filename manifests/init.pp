@@ -37,14 +37,14 @@
 #
 class nda (
   $loadbalancer_cluster,
-  $name  = 'nda',
+  $application_name  = 'nda',
 ){
 
   class { 'jboss': }
 
-  jboss::instance { $name :
-    user          => $name,   # Default is jboss
-    group         => $name,   # Default is jboss
+  jboss::instance { $application_name :
+    user          => $application_name,   # Default is jboss
+    group         => $application_name,   # Default is jboss
     createuser    => true,       # Default is true
     template      => "all",     # Default is default
     bindaddr      => "0.0.0.0", # Default is 127.0.0.1

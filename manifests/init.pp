@@ -42,7 +42,7 @@ class nda (
 
   package {'openjdk-7-jre' :} ->
   class { 'jboss':
-    bindaddr => $::ipaddress,
+    bindaddr => '0.0.0.0',
     version  => '7',
   }
 

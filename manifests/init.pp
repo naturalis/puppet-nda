@@ -40,9 +40,10 @@ class nda (
   $application_name  = 'nda',
 ){
 
-  package {'openjdk-6-jre' :} ->
+  package {'openjdk-7-jre' :} ->
   class { 'jboss':
     bindaddr => $::ipaddress,
+    version  => '7',
   }
 
   jboss::instance { $application_name :
@@ -50,7 +51,7 @@ class nda (
     group         => $application_name,   # Default is jboss
     createuser    => true,       # Default is true
     template      => "all",     # Default is default
-    bindaddr      => "0.0.0.0", # Default is 127.0.0.1
+    bindaddr      => $::ipaddress, # Default is 127.0.0.1
     port          => "80",      # Default is 8080
     init_timeout  => 10,        # Default is 0
     #run_conf      => "site/jboss/myapp/run.conf",  # Default is unset

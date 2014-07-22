@@ -47,9 +47,10 @@ class nda (
   package {'openjdk-7-jdk' :} ->
 
   class { 'jboss':
-    install  => 'source',
-    bindaddr => '0.0.0.0',
-    version  => '7',
+    install        => 'source',
+    install_source =>  'https://github.com/jbossas/jboss-as/archive/7.1.3.Final.tar.gz'
+    bindaddr       => '0.0.0.0',
+    version        => '7',
   } ->
 
   #exec {'create jboss admin user':

@@ -53,14 +53,15 @@ class nda (
   #   version        => '7',
   # } ->
 
-  #exec {'create jboss admin user':
-  #  command => "/bin/sh /opt/jboss/bin/add-user.sh --silent ndaadmin ${admin_password} ",
-  #  unless  => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
-  #  returns => 1,
-  #}
+
 
   class { 'wildfly':
     bind_address => $::ipaddress,
+  }
+
+  exec {'create wildfly admin user':
+    command => "/bin/sh /opt/wildfly/bin/add-user.sh --silent ndaadmin ${admin_password} ",
+    unless  => '/bin/cat /opt/wildfy/standalone/configuration/mgmt-users.properties | grep ndaadmin',
   }
 
   # exec {'create jboss admin user':

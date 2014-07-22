@@ -58,7 +58,7 @@ class nda (
   #}
 
   exec {'create jboss admin user':
-    command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password} > /tmp/capture.log  2>&1",
+    command    => "/bin/su -c '/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password} '",
     unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
     environment => 'JBOSS_HOME="/opt/jboss"',
   }

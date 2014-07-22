@@ -37,6 +37,7 @@
 #
 class nda (
   $nda_cluster_id,
+  $admin_password = 'nda'
   $application_name  = 'nda',
   $port = '8080',
 ){
@@ -48,6 +49,12 @@ class nda (
   class { 'jboss':
     bindaddr => '0.0.0.0',
     version  => '7',
+  } ->
+
+  exec {'create jboss admin user':
+    cwd     => '/opt/jboss/bin',
+    command => "add-user.sh ndaadmin ${admin_password}",
+    unless  => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
   }
 
   @@haproxy::balancermember {$::hostname :

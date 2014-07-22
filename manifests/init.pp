@@ -51,10 +51,16 @@ class nda (
     version  => '7',
   } ->
 
+  #exec {'create jboss admin user':
+  #  command => "/bin/sh /opt/jboss/bin/add-user.sh --silent ndaadmin ${admin_password} ",
+  #  unless  => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
+  #  returns => 1,
+  #}
+
   exec {'create jboss admin user':
-    command => "/bin/sh /opt/jboss/bin/add-user.sh --silent ndaadmin ${admin_password} ",
-    unless  => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
-    returns => 1,
+    command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password}",
+    unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
+    enviroment => 'JBOSS_HOME="/opt/jboss"',
   }
 
   @@haproxy::balancermember {$::hostname :

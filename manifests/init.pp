@@ -60,7 +60,7 @@ class nda (
   #}
 
   class { 'wildfly':
-    $bind_address = $::ipaddress,
+    bind_address => $::ipaddress,
   }
 
   # exec {'create jboss admin user':

@@ -45,7 +45,7 @@ class nda (
   package {'subversion' : }
 
   package {'openjdk-7-jdk' :} ->
-
+  # set to development branch
   class { 'jboss':
     install        => 'source',
     install_source => 'https://github.com/jbossas/jboss-as/archive/7.1.3.Final.tar.gz',

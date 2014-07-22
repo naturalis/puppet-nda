@@ -40,25 +40,28 @@ class nda (
   $application_name  = 'nda',
 ){
 
-  package {'openjdk-7-jre' :} ->
+  package {'subversion' : }
+
+  package {'openjdk-7-jdk' :} ->
+
   class { 'jboss':
     bindaddr => '0.0.0.0',
     version  => '7',
   }
 
-  jboss::instance { $application_name :
-    user          => $application_name,   # Default is jboss
-    group         => $application_name,   # Default is jboss
-    createuser    => true,       # Default is true
-    template      => "all",     # Default is default
-    bindaddr      => $::ipaddress, # Default is 127.0.0.1
-    port          => "80",      # Default is 8080
-    init_timeout  => 10,        # Default is 0
-    #run_conf      => "site/jboss/myapp/run.conf",  # Default is unset
-    #conf_dir      => "site/jboss/myapp/conf",      # Default is unset
-    #deploy_dir    => "site/jboss/myapp/deploy",    # Default is unset
-    #deployers_dir => "site/jboss/myapp/deployers", # Default is unset
-   }
+  # jboss::instance { $application_name :
+  #   user          => $application_name,   # Default is jboss
+  #   group         => $application_name,   # Default is jboss
+  #   createuser    => true,       # Default is true
+  #   template      => "all",     # Default is default
+  #   bindaddr      => $::ipaddress, # Default is 127.0.0.1
+  #   port          => "80",      # Default is 8080
+  #   init_timeout  => 10,        # Default is 0
+  #   #run_conf      => "site/jboss/myapp/run.conf",  # Default is unset
+  #   #conf_dir      => "site/jboss/myapp/conf",      # Default is unset
+  #   #deploy_dir    => "site/jboss/myapp/deploy",    # Default is unset
+  #   #deployers_dir => "site/jboss/myapp/deployers", # Default is unset
+  #  }
 
 
 }

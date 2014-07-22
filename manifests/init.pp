@@ -36,8 +36,9 @@
 # Copyright 2014 Your name here, unless otherwise noted.
 #
 class nda (
-  $loadbalancer_cluster,
+  $nda_cluster_id,
   $application_name  = 'nda',
+  $port = '8080',
 ){
 
   package {'subversion' : }
@@ -47,6 +48,14 @@ class nda (
   class { 'jboss':
     bindaddr => '0.0.0.0',
     version  => '7',
+  }
+
+  @@haproxy::balancermember {$::hostname :
+    listening_service => $nda_cluster_id,
+    ports             => $port,
+    server_names      => $::hostname,
+    ipaddresses       => $::ipaddress,
+    options           => 'check',
   }
 
   # jboss::instance { $application_name :

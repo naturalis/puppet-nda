@@ -44,14 +44,14 @@ class nda (
 
   package {'subversion' : }
 
-  package {'openjdk-7-jdk' :} ->
-  # set to development branch
-  class { 'jboss':
-    install        => 'source',
-    install_source => 'https://github.com/jbossas/jboss-as/archive/7.1.3.Final.tar.gz',
-    bindaddr       => '0.0.0.0',
-    version        => '7',
-  } ->
+  # package {'openjdk-7-jdk' :} ->
+  # # set to development branch
+  # class { 'jboss':
+  #   install        => 'source',
+  #   install_source => 'https://github.com/jbossas/jboss-as/archive/7.1.3.Final.tar.gz',
+  #   bindaddr       => '0.0.0.0',
+  #   version        => '7',
+  # } ->
 
   #exec {'create jboss admin user':
   #  command => "/bin/sh /opt/jboss/bin/add-user.sh --silent ndaadmin ${admin_password} ",
@@ -59,11 +59,15 @@ class nda (
   #  returns => 1,
   #}
 
-  exec {'create jboss admin user':
-    command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password}",
-    unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
-    environment => 'JBOSS_HOME="/opt/jboss"',
+  class { 'wildfly':
+    $bind_address = $::ipaddress,
   }
+
+  # exec {'create jboss admin user':
+  #   command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password}",
+  #   unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
+  #   environment => 'JBOSS_HOME="/opt/jboss"',
+  # }
 
   @@haproxy::balancermember {$::hostname :
     listening_service => $nda_cluster_id,

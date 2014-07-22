@@ -75,7 +75,6 @@ class nda (
     ports             => $port,
     server_names      => $::hostname,
     ipaddresses       => $::ipaddress,
-    options           => 'check',
   }
 
   # jboss::instance { $application_name :

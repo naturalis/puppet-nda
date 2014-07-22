@@ -37,7 +37,7 @@
 #
 class nda (
   $nda_cluster_id,
-  $admin_password = 'nda'
+  $admin_password = 'nda',
   $application_name  = 'nda',
   $port = '8080',
 ){

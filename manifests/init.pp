@@ -47,6 +47,7 @@ class nda (
   package {'openjdk-7-jdk' :} ->
 
   class { 'jboss':
+    install  => 'source',
     bindaddr => '0.0.0.0',
     version  => '7',
   } ->
@@ -58,7 +59,7 @@ class nda (
   #}
 
   exec {'create jboss admin user':
-    command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user --silent ndaadmin ${admin_password}",
+    command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password}",
     unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
     environment => 'JBOSS_HOME="/opt/jboss"',
   }

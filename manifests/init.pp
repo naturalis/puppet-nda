@@ -52,8 +52,7 @@ class nda (
   } ->
 
   exec {'create jboss admin user':
-    cwd     => '/opt/jboss/bin',
-    command => "/opt/jboss/bin/add-user.sh ndaadmin ${admin_password}",
+    command => "/bin/sh /opt/jboss/bin/add-user.sh ndaadmin ${admin_password}",
     unless  => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
   }
 

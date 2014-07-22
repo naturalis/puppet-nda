@@ -57,7 +57,7 @@ class nda (
 
   class { 'wildfly':
     bind_address => $::ipaddress,
-  }
+  } ->
 
   exec {'create wildfly admin user':
     command => "/bin/sh /opt/wildfly/bin/add-user.sh --silent ndaadmin ${admin_password} ",

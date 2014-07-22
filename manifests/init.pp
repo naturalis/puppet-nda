@@ -52,8 +52,9 @@ class nda (
   } ->
 
   exec {'create jboss admin user':
-    command => "/bin/sh /opt/jboss/bin/add-user.sh ndaadmin ${admin_password}",
+    command => "/bin/sh /opt/jboss/bin/add-user.sh --silent ndaadmin ${admin_password} ",
     unless  => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',
+    returns => 1,
   }
 
   @@haproxy::balancermember {$::hostname :

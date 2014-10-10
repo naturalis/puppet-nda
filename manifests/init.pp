@@ -57,7 +57,7 @@ class nda (
 
   class { 'wildfly':
     bind_address            => $::ipaddress,
-    use_web_download        => true,
+    use_web_download        => false,
     bind_address_management => $::ipaddress,
   } ->
 

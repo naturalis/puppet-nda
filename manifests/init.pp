@@ -42,6 +42,11 @@ class nda (
   $port = '8080',
 ){
 
+  base::users {'ayco.holleman':
+    $comment => 'ayco.holleman',
+    $ssh_key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQDXBzKjMOITaKnN3SXX/PIbwma518Z92oRkOOSW+D6lk7Ln1/mCoAHD7YfjYIoZV7PJyF9rQW3FVI5Hj9mi1OYTz3GQ6s+Iys2VM+rpq1N3KCnvVcRpABl9VOZcCyBAJ1JW2ka3gQoWgMfadVZidrMa0IEN1+3ITk7hgIodTx4l/b+TAcxtPYSo+Jr1AaF8fuf3VKP1Ko4EWuR3mwJQmkTymnHqggBfqJE/ulLQIeMUKZCREg5VSH+LUg1Gh6hRyKDnHce7hmPyE3Vm5k3zCvTaDHQXjnnV+kubgZXD4P/Gs3nakuu6BUU/17tt0QMupVuVdgAznbBkitADy+aCVAgD",
+  }
+
   package {'subversion' : }
 
   # package {'openjdk-7-jdk' :} ->

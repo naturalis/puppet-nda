@@ -53,12 +53,12 @@ class nda (
   #   version        => '7',
   # } ->
 
-
+  #install package of jdk needed
 
   class { 'wildfly':
-    bind_address            => '10.42.1.146',
+    bind_address            => $::ipaddress,
     use_web_download        => false,
-    bind_address_management => '10.42.1.146',
+    bind_address_management => $::ipaddress,
   } ->
 
   exec {'create wildfly admin user':

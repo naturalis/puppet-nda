@@ -56,9 +56,9 @@ class nda (
 
 
   class { 'wildfly':
-    bind_address            => $::ipaddress,
+    bind_address            => '10.42.1.146',
     use_web_download        => false,
-    bind_address_management => $::ipaddress,
+    bind_address_management => '10.42.1.146',
   } ->
 
   exec {'create wildfly admin user':

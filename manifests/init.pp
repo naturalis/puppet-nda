@@ -74,10 +74,7 @@ class nda (
     filename     => 'nl.naturalis.nda.ear',
   }
 
-  elasticsearch::plugin{'lmenezes/elasticsearch-kopf':
-    module_dir => 'kopf',
-  }
-
+  
   # exec {'create jboss admin user':
   #   command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password}",
   #   unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',

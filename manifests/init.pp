@@ -66,7 +66,7 @@ class nda (
   exec {'create wildfly admin user':
     command => "/bin/sh /opt/wildfly/bin/add-user.sh --silent ndaadmin ${admin_password} ",
     unless  => '/bin/cat /opt/wildfly/standalone/configuration/mgmt-users.properties | grep ndaadmin',
-  }
+  } ->
 
   class { 'wildfly::deploy' :
     filelocation => 'puppet:///modules/nda',

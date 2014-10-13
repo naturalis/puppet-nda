@@ -41,6 +41,7 @@ class nda (
   $application_name = 'nda',
   $port             = '8080',
   $extra_users_hash = undef,
+  $plugins          = undef,
 ){
 
   if $extra_users_hash {
@@ -71,6 +72,10 @@ class nda (
   class { 'wildfly::deploy' :
     filelocation => 'puppet:///modules/nda',
     filename     => 'nl.naturalis.nda.ear',
+  }
+
+  elasticsearch::plugin{'lmenezes/elasticsearch-kopf':
+    module_dir => 'kopf',
   }
 
   # exec {'create jboss admin user':

@@ -42,29 +42,20 @@ class nda (
   $port = '8080',
 ){
 
-  base::users { 'ayco.holleman':
-    comment => 'ayco.holleman@naturalis.nl',
-    ssh_key => { key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQDXBzKjMOITaKnN3SXX/PIbwma518Z92oRkOOSW+D6lk7Ln1/mCoAHD7YfjYIoZV7PJyF9rQW3FVI5Hj9mi1OYTz3GQ6s+Iys2VM+rpq1N3KCnvVcRpABl9VOZcCyBAJ1JW2ka3gQoWgMfadVZidrMa0IEN1+3ITk7hgIodTx4l/b+TAcxtPYSo+Jr1AaF8fuf3VKP1Ko4EWuR3mwJQmkTymnHqggBfqJE/ulLQIeMUKZCREg5VSH+LUg1Gh6hRyKDnHce7hmPyE3Vm5k3zCvTaDHQXjnnV+kubgZXD4P/Gs3nakuu6BUU/17tt0QMupVuVdgAznbBkitADy+aCVAgD",
-                 comment => 'ayco.holleman@naturalis.nl',
-                 type => 'ssh-rsa'},
-  }
+  # base::users { 'ayco.holleman':
+  #   comment => 'ayco.holleman@naturalis.nl',
+  #   ssh_key => { key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQDXBzKjMOITaKnN3SXX/PIbwma518Z92oRkOOSW+D6lk7Ln1/mCoAHD7YfjYIoZV7PJyF9rQW3FVI5Hj9mi1OYTz3GQ6s+Iys2VM+rpq1N3KCnvVcRpABl9VOZcCyBAJ1JW2ka3gQoWgMfadVZidrMa0IEN1+3ITk7hgIodTx4l/b+TAcxtPYSo+Jr1AaF8fuf3VKP1Ko4EWuR3mwJQmkTymnHqggBfqJE/ulLQIeMUKZCREg5VSH+LUg1Gh6hRyKDnHce7hmPyE3Vm5k3zCvTaDHQXjnnV+kubgZXD4P/Gs3nakuu6BUU/17tt0QMupVuVdgAznbBkitADy+aCVAgD",
+  #                comment => 'ayco.holleman@naturalis.nl',
+  #                type => 'ssh-rsa'},
+  # }
 
   package {'subversion' : }
 
-  # package {'openjdk-7-jdk' :} ->
-  # # set to development branch
-  # class { 'jboss':
-  #   install        => 'source',
-  #   install_source => 'https://github.com/jbossas/jboss-as/archive/7.1.3.Final.tar.gz',
-  #   bindaddr       => '0.0.0.0',
-  #   version        => '7',
-  # } ->
-
-  #install package of jdk needed
+  package {'openjdk-7-jdk' :} ->
 
   class { 'wildfly':
     bind_address            => $::ipaddress,
-    use_web_download        => false,
+    use_web_download        => true,
     bind_address_management => $::ipaddress,
   } ->
 

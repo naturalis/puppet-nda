@@ -68,6 +68,11 @@ class nda (
     unless  => '/bin/cat /opt/wildfy/standalone/configuration/mgmt-users.properties | grep ndaadmin',
   }
 
+  class { 'wildfly::deploy' :
+    filelocation => 'puppet:///modules/nda',
+    filename     => 'nl.naturalis.nda.ear',
+  }
+
   # exec {'create jboss admin user':
   #   command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password}",
   #   unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',

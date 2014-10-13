@@ -41,7 +41,6 @@ class nda (
   $application_name = 'nda',
   $port             = '8080',
   $extra_users_hash = undef,
-  $plugins          = undef,
 ){
 
   if $extra_users_hash {
@@ -74,7 +73,7 @@ class nda (
     filename     => 'nl.naturalis.nda.ear',
   }
 
-  
+
   # exec {'create jboss admin user':
   #   command    => "/usr/bin/java -jar /opt/jboss/jboss-modules.jar -mp /opt/jboss/modules org.jboss.as.domain-add-user ndaadmin ${admin_password}",
   #   unless     => '/bin/cat /opt/jboss/standalone/configuration/mgmt-users.properties | grep ndaadmin',

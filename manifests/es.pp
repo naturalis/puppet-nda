@@ -34,8 +34,7 @@ class nda::es (
 
   exec { 'install marvel' :
     command => '/usr/share/elasticsearch/bin/plugin -i elasticsearch/marvel/latest',
-    unless  => '/usr/bin/test -d /usr/share/elasticsearch/plugins/marvel',
-
+    onlyif  => '/usr/bin/test -d /usr/share/elasticsearch/plugins/marvel',
   }
 
 

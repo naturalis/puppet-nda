@@ -37,5 +37,7 @@ class nda::es (
     onlyif  => '/usr/bin/test -d /usr/share/elasticsearch/plugins/marvel',
   }
 
+  notice('bla')
+
 
 }
